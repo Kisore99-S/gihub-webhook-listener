@@ -10,7 +10,7 @@ const githubHandler = async (req, res) => {
 
   try {
     await fetch(SLACK_WEBHOOK_URL, {
-      method: POST,
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: msg }),
     });
