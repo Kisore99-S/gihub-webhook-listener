@@ -9,11 +9,12 @@ const githubHandler = async (req, res) => {
   const msg = `🚀 *${pusher}* pushed to *${repo}*:\n${payload.head_commit?.message}`;
 
   try {
-    await fetch(SLACK_WEBHOOK_URL, {
+    const slackWebhookResponse = await fetch(SLACK_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: msg }),
     });
+    console.log(`slack webhook response: ${slackWebhookResponse}`);
     console.log("Webhook received and sent to Slack");
     res.status(200).json({ message: "Webhook received and sent to Slack" });
   } catch (err) {
