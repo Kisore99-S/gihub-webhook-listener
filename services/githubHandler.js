@@ -14,8 +14,10 @@ const githubHandler = async (req, res) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: msg }),
     });
+    console.log("Webhook received and sent to Slack");
     res.status(200).json({ message: "Webhook received and sent to Slack" });
   } catch (err) {
+    console.log("Slack notification failed");
     res.status(500).json({ error: "Slack notification failed" });
   }
 };
